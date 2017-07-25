@@ -1,7 +1,16 @@
+ORG = ibobcode
+NAME = portfolio
+SHA1 = $(shell git log -1 --pretty=oneline | cut -c-10)
+BRANCH = $(shell git branch -a --contains $(SHA1) | egrep '(remotes/|\*)' | egrep -v "(HEAD|detached)" | head -1 | sed -e "s/\* //" -e "s/.*\///")
+VERSION = $(BRANCH)-$(SHA1)
+
 all: install
 
 install:
-	npm install
+	yarn install
 
-build:
-	npm build
+build-push:
+	yarn build
+	docker build --rm -t $(ORG)/$(NAME):${VERSION} .
+	docker tag  $(ORG)/$(NAME):${VERSION} $(ORG)/$(NAME):latest
+	docker push $(ORG)/$(NAME)
