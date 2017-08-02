@@ -7,5 +7,4 @@
 ------
 
 - [Install Yarn](https://yarnpkg.com/lang/en/docs/install/)
-- yarn install
-- yarn start
+- make
