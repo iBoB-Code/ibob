@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Work = () => (
-  <div className="work">
+  <div id="work">
   </div>
 );
 
