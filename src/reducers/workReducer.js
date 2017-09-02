@@ -1,31 +1,43 @@
 const defaults = {
-  response: null,
+  pageToCrawl: 0,
+  crop: [],
   fetching: false,
   fetched: false,
-  dummyVar: 1,
+  steps: { active: 'harvest', harvestCompleted: false, displayCompleted: false, trainCompleted: false },
+  isCrawling: false,
   error: null,
 };
 
 export default function reducer(state = defaults, action) {
   switch (action.type) {
-    case 'FETCH_DUMMY_API': {
+    case 'CRAWL': {
       return { ...state, fetching: true };
     }
-    case 'FETCH_DUMMY_API_REJECTED': {
+    case 'CRAWL_REJECTED': {
       return { ...state, fetching: false, error: action.payload };
     }
-    case 'FETCH_DUMMY_API_FULFILLED': {
+    case 'CRAWL_FULFILLED': {
+      console.log("#############", state.pageToCrawl);
       return {
         ...state,
+        pageToCrawl: state.pageToCrawl + 1,
         fetching: false,
         fetched: true,
         response: action.payload,
+        crop: state.crop.concat(action.payload),
       };
     }
-    case 'INCREMENT': {
+    case 'SWITCH_CRAWLER': {
       return {
         ...state,
-        dummyVar: state.dummyVar + action.payload,
+        isCrawling: action.payload,
+      };
+    }
+    case 'CLEAR_DATA': {
+      return {
+        ...state,
+        pageToCrawl: 0,
+        crop: [],
       };
     }
     default : {

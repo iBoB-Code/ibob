@@ -1,4 +1,5 @@
 @import '../colors';
+$break-small: 750px;
 
 @keyframes bump {
   0% {
@@ -19,6 +20,25 @@
   }
 }
 
+@keyframes bump-small {
+  0% {
+    width: 200px;
+    height: 200px;
+  }
+  10% {
+    width: 180px;
+    height: 180px;
+  }
+  90% {
+    width: 180px;
+    height: 180px;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+  }
+}
+
 @keyframes fader {
   0% {
     opacity: 0;
@@ -30,6 +50,7 @@
     opacity: 0;
   }
 }
+
 
 .landing {
   background-color: #272727;
@@ -65,6 +86,17 @@
   color: white;
   font-size: 4em;
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.landing .container span {
+  color: white;
+  text-align: center;
+  margin: 0;
+  font-size: 1em;
+  height: 1.2em;
+  line-height: 1.2em;
 }
 
 .landing .backContainer, .landing .frontContainer {

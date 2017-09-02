@@ -1,7 +1,10 @@
 @import './styles/all-styles';
 
+@import './styles/Work/marker';
+@import './styles/Work/display';
+@import './styles/Work/harvest';
+@import './styles/Work/work';
+@import './styles/Work/train';
+
 @import './styles/Home/home';
 @import './styles/Home/landing';
-@import './styles/Home/work';
-
-@import './styles/Dashboard/dashboard';

@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-import dummy from './dummyReducer';
+import home from './homeReducer';
+import harvest from './workReducer';
 
 export default combineReducers({
-  dummy,
+  home,
+  harvest,
 });
