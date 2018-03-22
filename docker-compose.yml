@@ -1,7 +1,0 @@
-version: '2'
-
-services:
-  web:
-    image: ibobcode/portfolio:master-433c3e4088
-    ports:
-      - "3000:3000"

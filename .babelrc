@@ -1,0 +1,13 @@
+{
+  "presets": ["env", "react", "es2015", "stage-2"],
+  "plugins": [
+    "transform-decorators-legacy",
+    [
+      "file-loader", {
+        "extensions": ["ico", "png", "jpg"],
+        "publicPath": "/dist/img",
+        "outputPath": "/dist/img",
+      },
+    ],
+  ]
+}
