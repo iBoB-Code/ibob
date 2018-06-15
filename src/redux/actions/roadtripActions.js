@@ -3,14 +3,14 @@ import axios from 'axios';
 export function modalOpen(val) {
   return {
     type: 'MODAL_OPEN',
-    payload: val,
+    payload: val
   };
 }
 
 export function modalClose() {
   return {
     type: 'MODAL_CLOSE',
-    payload: true,
+    payload: true
   };
 }
 

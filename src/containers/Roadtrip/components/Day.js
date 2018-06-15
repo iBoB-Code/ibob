@@ -45,17 +45,11 @@ const Landing = ({ num, text, insta, handleOpen, heart }) => (
 );
 
 Landing.propTypes = {
-  handleOpen: PropTypes.func,
-  num: PropTypes.number,
-  heart: PropTypes.number,
-  text: PropTypes.array,
-};
-
-Landing.defaultProps = {
-  handleOpen: () => console.log('ERROR'),
-  num: 0,
-  heart: 3,
-  text: [],
+  insta: PropTypes.string.isRequired,
+  handleOpen: PropTypes.func.isRequired,
+  num: PropTypes.number.isRequired,
+  heart: PropTypes.number.isRequired,
+  text: PropTypes.array.isRequired
 };
 
 export default Landing;

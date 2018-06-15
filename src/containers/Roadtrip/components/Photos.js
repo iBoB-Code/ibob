@@ -14,18 +14,14 @@ const Photos = ({ selectedPictures }) => (
       selectedPictures === 0 ? (
         pics.map(i => getDaysPics(i))
       ) : (
-        getDaysPics(pics[selectedPictures - 1])
+        getDaysPics(pics[ selectedPictures - 1 ])
       )
     }
   </div>
 );
 
 Photos.propTypes = {
-  selectedPictures: PropTypes.number,
-};
-
-Photos.defaultProps = {
-  selectedPictures: 0,
+  selectedPictures: PropTypes.number.isRequired
 };
 
 export default Photos;

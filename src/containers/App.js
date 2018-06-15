@@ -1,37 +1,47 @@
-/*
-  Base.js
-
-  The "root" component that persists throughout the app,
-  contains client router logic
-*/
-
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import Favicon from 'react-favicon';
+import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
+import Switch from 'react-router-dom/Switch';
+import Route from 'react-router-dom/Route';
+import 'semantic-ui-css/semantic.min.css';
+// import Helmet from 'react-helmet';
+import BrowserRouter from 'react-router-dom/BrowserRouter';
+// import PrivateRoute from 'COMPONENTS/PrivateRoute';
+import PublicRoute from 'COMPONENTS/PublicRoute';
 
-import BaseRoutes from '../routing/BaseRoutes.js';
+import Home from './Home';
+import Roadtrip from './Roadtrip';
+import LittleBrain from './LittleBrain';
+import NotFound from './NotFound';
 
-import './App.css';
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    // good for debugging - avoid excessive rendering
-    this.renderCount = 0;
-  }
-
-  render() {
-    this.renderCount++;
-    console.log('RENDERS:', this.renderCount);
-    // --> /src/routing/BaseRoutes.js
-    return (
-      <div className="app">
-        <Favicon url="../../../assets/img/logo2.ico" />
-        <BaseRoutes location={this.props.location} />
-      </div>
-    );
-  }
+// Force import during development to enable Hot-Module Replacement
+if (process.env.NODE_ENV === 'development') {
+  require('./Home'); // eslint-disable-line global-require
+  require('./Roadtrip'); // eslint-disable-line global-require
+  require('./LittleBrain'); // eslint-disable-line global-require
+  require('./NotFound'); // eslint-disable-line global-require
 }
 
-export default withRouter(connect()(App));
+const supportsHistory = 'pushState' in window.history;
+
+const App = props => (
+  <Provider store={props.store}>
+    <BrowserRouter forceRefresh={!supportsHistory} keyLength={12}>
+      <div>
+        {/* <Helmet titleTemplate="%s - DeviceNet" defaultTitle="DeviceNet" /> */}
+        <Switch>
+          <PublicRoute path="/" component={Home} exact={true} />
+          <PublicRoute path="/roadtrip" component={Roadtrip} exact={true} />
+          <PublicRoute path="/little-brain" component={LittleBrain} exact={true} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+  </Provider>
+);
+
+App.propTypes = {
+  store: PropTypes.object.isRequired
+};
+
+export default App;
